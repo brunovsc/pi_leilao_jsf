@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Novo Leilão</title>
+    </h:head>
+    <h:body>
+        <h1>Novo Leilão</h1>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Produto: "/>
+                <h:inputText value="#{createAuctionBean.product}" size="20"/>
+                
+                <h:outputLabel value="Lance Mínimo: "/>
+                <h:inputText value="#{createAuctionBean.minimumBid}" size="20"/>
+                
+                <h:commandButton action="${createAuctionBean.createAuction()}" value="Criar Leilão" />                
+                <h:commandButton action="${createAuctionBean.back}" value="Voltar"/>    
+            </h:panelGrid>
+        </h:form>
+        <h1>#{createAuctionBean.message}</h1>
+    </h:body>
+</html>
+

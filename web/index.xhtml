@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns ="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Home</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Login: "/>
+                <h:inputText value="#{loginBean.username}" size="20"/>
+                
+                <h:outputLabel value="Senha: "/>
+                <h:inputText value="#{loginBean.password}" size="20"/>
+                
+                <h:commandButton action="${loginBean.login}" value="Entrar" />                
+                <h:commandButton action="${loginBean.signup}" value="Cadastrar"/>    
+            </h:panelGrid>
+        </h:form>
+        <h1>#{loginBean.message}</h1>
+    </h:body>
+</html>
+
