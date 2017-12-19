@@ -4,6 +4,9 @@ import domain.Auction;
 import domain.User;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+import persistence.AuctionDAO;
 
 @ManagedBean(name = "adminBean")
 public class AdminBean {
@@ -16,12 +19,22 @@ public class AdminBean {
     }
     
     public String logout() {
-        // TODO - terminate session
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession)context.getExternalContext().getSession(false);
+        session.invalidate();
         return "index";
     }
     
+    public void performAction(int auctionId) {
+        for(Auction a: auctions){
+            if(a.getId() == auctionId){
+                a.performAction();
+            }
+        }
+    }
+    
     public AdminBean() {
-        auctions = new ArrayList<>();
+        auctions = AuctionDAO.getInstance().getAuctions();
     }
 
     public ArrayList<Auction> getAuctions() {

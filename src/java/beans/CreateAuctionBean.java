@@ -1,6 +1,7 @@
 package beans;
 
 import javax.faces.bean.ManagedBean;
+import persistence.AuctionDAO;
 
 @ManagedBean(name = "createAuctionBean")
 public class CreateAuctionBean {
@@ -10,7 +11,7 @@ public class CreateAuctionBean {
     private String message;
 
     public void createAuction() {
-        // TODO - save to database
+        AuctionDAO.getInstance().addAuction(product, minimumBid, 0);
         message = "Leilão criado com sucesso!";
     }
     

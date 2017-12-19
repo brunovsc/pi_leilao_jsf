@@ -4,12 +4,11 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Home do Administrador</title>
+        <title>Consulta de Leilões</title>
     </h:head>
     <h:body>
-        <h1>Página do Administrador</h1>
-        <h2>Leilões:</h2>
-        <h:dataTable value="#{adminBean.auctions}" var="auction" border="2">
+        <h1>Leilões cadastrados:</h1>
+        <h:dataTable value="#{listAuctionsBean.auctions}" var="auction" border="2">
             <h:column>
                 <f:facet name="header">
                     <h:outputLabel value="ID"></h:outputLabel>
@@ -39,14 +38,13 @@
                     <h:outputLabel value="Ação"></h:outputLabel>
                 </f:facet>
                 <h:form>
-                    <h:commandButton action="${adminBean.performAction(auction.id)}" value="#{auction.action}"/>
+                    <h:commandButton action="${listAuctionsBean.watchAuction(auction.id)}" value="Acompanhar"/>
                 </h:form> 
             </h:column>
         </h:dataTable>
         <br></br>
         <h:form>                             
-            <h:commandButton action="${adminBean.newAuction}" value="Novo Leilão"/>   
-            <h:commandButton action="${adminBean.logout}" value="Sair"/>    
+            <h:commandButton action="${listAuctionsBean.back}" value="Voltar"/>    
         </h:form>
     </h:body>
 </html>

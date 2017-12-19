@@ -1,9 +1,13 @@
 package beans;
 
+import domain.User;
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
+import javax.faces.bean.SessionScoped;
+import persistence.UserDAO;
 
 @ManagedBean(name = "loginBean")
+@SessionScoped
 public class LoginBean implements Serializable {
 
     private String username;
@@ -11,16 +15,22 @@ public class LoginBean implements Serializable {
     private String message;
 
     public String login(){
-        if(username.equals("admin")){
-            if(password.equals("admin")){
-                return "homeAdmin";
+        User user = UserDAO.getInstance().getUserWithUsername(username);
+        if(user == null){
+            message = "Usuário inválido!";
+            return "";
+        } else {
+            if(user.getPassword().equals(password)){
+                if(user.isAdmin()){
+                    return "homeAdmin";
+                } else {
+                    return "homeParticipant";
+                }
             } else {
                 message = "Senha inválida!";
+                return "";
             }
-        } else { // TODO - get user from database and verify its password
-            message = "Usuário inválido!";
         }
-        return "";
     }
     
     public String signup(){

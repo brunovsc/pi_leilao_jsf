@@ -1,12 +1,50 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Home do Participante</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h1>Página do Participante: #{participantBean.username}</h1>
+        <h2>Leilões consultados:</h2>
+        <h:dataTable value="#{participantBean.auctions}" var="auction" border="2">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputLabel value="ID"></h:outputLabel>
+                </f:facet>
+                <h:outputLabel value="#{auction.id}"></h:outputLabel>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputLabel value="Produto"></h:outputLabel>
+                </f:facet>
+                <h:outputLabel value="#{auction.product}"></h:outputLabel>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputLabel value="Menor Lance"></h:outputLabel>
+                </f:facet>
+                <h:outputLabel value="#{auction.minimumBid}"></h:outputLabel>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputLabel value="Lance Atual"></h:outputLabel>
+                </f:facet>
+                <h:outputLabel value="#{auction.currentBid}"></h:outputLabel>
+            </h:column>
+            <h:column>
+                <h:form>
+                    <h:commandButton action="${participantBean.submitBid(auction.id)}" value="#{auction.action}"/>
+                </h:form> 
+            </h:column>
+        </h:dataTable>
+        <br></br>
+        <h:form>                               
+            <h:commandButton action="${participantBean.logout}" value="Sair"/>   
+            <h:commandButton action="${participantBean.listAuctions}" value="Consultar Leilões"/>    
+        </h:form>
     </h:body>
 </html>
 
