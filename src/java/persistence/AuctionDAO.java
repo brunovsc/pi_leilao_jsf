@@ -31,6 +31,15 @@ public class AuctionDAO {
         auctions.add(new Auction(product, minBid, curBid));
     }
     
+    public Auction getAuctionWithId(int auctionId){
+        for(Auction a: auctions){
+            if(a.getId() == auctionId){
+                return a;
+            }
+        }
+        return null;
+    }
+    
     
     
 }

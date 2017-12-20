@@ -59,9 +59,15 @@ public class Auction {
         this.currentBid = currentBid;
     }
         
-    public void performAction() {
+    public String performAction() {
+        if(currentBid != 0) {
+            action = "Finalizado";
+            status = false;
+            return "closedAuction";
+        }
         status = !status;
-        action = (status == true) ? "Encerrar" : "Iniciar";
+        action = status ? "Encerrar" : "Iniciar";
+        return "";
     }
 
     public void setStatus(boolean status) {

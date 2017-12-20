@@ -5,6 +5,7 @@ import domain.User;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import persistence.AuctionDAO;
 
@@ -25,12 +26,21 @@ public class AdminBean {
         return "index";
     }
     
-    public void performAction(int auctionId) {
+    public String performAction(int auctionId) {
         for(Auction a: auctions){
             if(a.getId() == auctionId){
-                a.performAction();
+                String action = a.performAction();
+                
+                HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+                req.setAttribute("auctionId", auctionId);
+                return action;
             }
         }
+        return "";
+    }
+    
+    public String reload() {
+        return "homeAdmin";
     }
     
     public AdminBean() {

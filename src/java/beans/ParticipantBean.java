@@ -56,6 +56,10 @@ public class ParticipantBean {
         return "index";
     }
     
+    public String reload() {
+        return "homeParticipant";
+    }
+    
     public String listAuctions() {
         return "listAuctions";
     }

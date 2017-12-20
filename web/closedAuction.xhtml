@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Leilão Encerrado</title>
+    </h:head>
+    <h:body>
+        <h1>Leilão Encerrado</h1>
+        <h2>Dados do leilão: #{closedAuctionBean.message}</h2>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="ID: " style="font-weight:bold"/>
+            <h:outputLabel value="#{closedAuctionBean.closedAuction.id}"/>
+
+            <h:outputLabel value="Produto: " style="font-weight:bold"/>
+            <h:outputLabel value="#{closedAuctionBean.closedAuction.product}"/>
+
+            <h:outputLabel value="Lance Mínimo: " style="font-weight:bold"/>
+            <h:outputLabel value="#{closedAuctionBean.closedAuction.minimumBid}"/>
+
+            <h:outputLabel value="Lance Final: " style="font-weight:bold"/>
+            <h:outputLabel value="#{closedAuctionBean.closedAuction.currentBid}"/>
+
+            <h:outputLabel value="Comprador: " style="font-weight:bold"/>
+            <h:outputLabel value="#{closedAuctionBean.closedAuction.usernameWinning}"/> 
+        </h:panelGrid>
+        <br/>
+        <h:form>
+            <h:commandButton action="${closedAuctionBean.back}" value="Voltar"/>   
+        </h:form>
+    </h:body>
+</html>
+
