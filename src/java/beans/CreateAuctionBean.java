@@ -42,8 +42,4 @@ public class CreateAuctionBean {
     public void setProduct(String product) {
         this.product = product;
     }
-
-    
-    
-    
 }

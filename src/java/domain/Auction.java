@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
-
 public class Auction {
     
     private static int idCounter = 0;
@@ -9,10 +7,11 @@ public class Auction {
     private int id;
     private String product;
     private int minimumBid;
-    private int currentBid;
     private boolean status; // true is Openned, false is Closed
     private String action;
-    private ArrayList<Bid> bids;
+    // BID
+    private String usernameWinning;
+    private int currentBid;
     
     public Auction(String product, int minBid, int curBid){
         this.id = idCounter++;
@@ -21,11 +20,7 @@ public class Auction {
         this.currentBid = curBid;
         this.status = false;
         this.action = "Iniciar";
-        this.bids = new ArrayList<>();
-    }
-
-    public ArrayList<Bid> getBids() {
-        return bids;
+        this.usernameWinning = null;
     }
 
     public int getCurrentBid() {
@@ -51,9 +46,26 @@ public class Auction {
     public String getAction() {
         return action;
     }
-    
+
+    public String getUsernameWinning() {
+        return usernameWinning;
+    }
+
+    public void setUsernameWinning(String usernameWinning) {
+        this.usernameWinning = usernameWinning;
+    }
+
+    public void setCurrentBid(int currentBid) {
+        this.currentBid = currentBid;
+    }
+        
     public void performAction() {
         status = !status;
         action = (status == true) ? "Encerrar" : "Iniciar";
     }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
 }
